@@ -1,0 +1,11 @@
+<form action="/vettedproj/register/" method="post">
+	{% csrf_token %}
+	First name: <input type="text" name="first_name" value="Akhil"><br>
+	Last name: <input type="text" name="last_name" value="Gurjar"><br>
+	Email: <input type="text" name="email" value="abcd@abc.com"><br>
+	Company Name: <input type="text" name="company_name" value="abcd company"><br>
+	Gender: <input type="text" name="gender" value="M"><br>
+	dob: <input type="text" name="dob" value="1991-11-25"><br>
+	password: <input type="text" name="password" value="abcd1234" ><br>
+	<input type="submit" value="Submit">
+</form>
