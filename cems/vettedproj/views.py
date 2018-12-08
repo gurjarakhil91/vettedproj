@@ -28,9 +28,10 @@ class Register(View):
 	def post(self, request, *args, **kwargs):
 		form = RegisterationForm(request.POST)
 		if form.is_valid():
+			is_active = True if request.user.is_superuser else False
 			try:
 				with transaction.atomic():
-					form.save()
+					form.save(is_active)
 			except:
 				return HttpResponse('Some error occured')
 			else:
