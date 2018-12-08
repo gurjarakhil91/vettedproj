@@ -68,6 +68,7 @@ class RegisterationForm(forms.Form):
 						gender = self.cleaned_data.get('gender'),
 						dob = self.cleaned_data.get('dob')
 					)
+		employee.promote_to_admin()
 
 		return employee
 
