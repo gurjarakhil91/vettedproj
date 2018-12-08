@@ -152,22 +152,6 @@ class EmployeeView(View):
 			else:
 				return HttpResponse(json.dumps(form.errors))
 
-	def put(self, request, *args, **kwargs):
-		emp_id = request.POST.get('id', None)
-		action = request.POST.get('action')
-
-		employee = Employee.objects.filter(id=com_id, company=request.user.employee.company).last()
-
-		if employee:
-			if action == 'approve':
-				company.activate()
-				return HttpResponse('Company approved')
-			elif action == 'remove':
-				company.deactivate()
-				return HttpResponse('Company removed')
-		else:
-			HttpResponse('Employee not found')
-
 
 class ProfileView(View):
 
