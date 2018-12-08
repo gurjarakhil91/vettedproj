@@ -21,7 +21,7 @@ def index(request):
 class Register(View):
 
 	def get(self, request, *args, **kwargs):
-		if request.user.is_authenticated:
+		if request.user.is_authenticated and hasattr('employee', request.user),:
 			return redirect('view_profile')
 		return HttpResponse(render(request, 'register.html'))
 
