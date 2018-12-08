@@ -1,2 +1,96 @@
 1.) python manage.py migrate
 2.) python manage.py createsuperuser
+3.) python manage.py runserver
+
+
+
+Apis-:
+
+=>/vettedproj/register/  :- Anyone can register company. 
+
+	GET => will return html.
+
+	POST => It will create user, employee and company instance. Employee will be made admin.
+
+		Parametes:-
+			first_name :- alphabet string,
+			last_name :- alphabet string,
+			email:- string,
+			company_name:- string,
+			gender:- 'M'/'F'
+			dob:- string(Required. Format: YYYY-MM-DD')
+			password:- string
+
+		Response:-
+			Success => 'company registered'
+			Failure => 'list of errors'
+
+		#By default company is deactivated when registered, they need to be actiavted by superadmin. If it is registered by superuser then by default they are activated. 
+
+
+=>/vettedproj/login/
+
+	GET => will return html
+
+	POST => User login
+
+		Parametes:-
+			email :- email
+			password :- string
+
+		Response:-
+			Success => redirected to profile
+			Failure => 'Invalid credentials'
+
+
+=> /vettedproj/company/ :- superadmin can manage company. Only superadmin can access this view
+	
+	GET => will return list of companies with filter.
+
+		Parameters:- 
+			filter=active :- Will return all active companies (url => /vettedproj/company/?filter=active)
+			
+			filter=inactive :- will return all inactive companies
+			
+			No filter :- Will return all the companies
+
+	POST => Superadmin can activate or deactivate company.
+
+		Parameters:-
+			id :- Integer (id of company)
+			action :- approved/remove
+
+			action = approved	#will approve the company
+			action = remove		#will deactivate the company. It will not delete from database.
+
+=> /vettedproj/employee/ :- Company admin can manage employees. Only company admin can access this view.
+
+	GET => will return list of employees with filter.
+
+		Parameters:- 
+			filter=active :- Will return all active employees (url => /vettedproj/employee/?filter=active)
+			
+			filter=inactive :- will return all inactive employees
+			
+			No filter :- Will return all the employees
+
+	POST => Company admin can activate or deactivate employee.
+
+		Parameters:-
+			id :- Integer (id of employee)
+			action :- approved/remove
+
+			action = approved	#will approve the employee
+			action = remove		#will deactivate the employee. It will not delete from database.
+
+
+=> /vettedproj/profile/ 
+
+	GET => Will return json details of employee
+
+=>/vettedproj/logout/
+
+	GET => Will logout user from system.
+
+
+
