@@ -50,7 +50,7 @@ class RegisterationForm(forms.Form):
 			raise ValidationError('user email already exist')
 
 
-	def save(self):
+	def save(self, is_active=False):
 		user = User.objects.create(
 					username = self.cleaned_data.get('email'),
 					first_name = self.cleaned_data.get('first_name'),
@@ -61,7 +61,7 @@ class RegisterationForm(forms.Form):
 		user.set_password(self.cleaned_data.get('password'))
 		user.save()
 
-		company = create_company(name = self.cleaned_data.get('company_name'))
+		company = create_company(name = self.cleaned_data.get('company_name'), is_active=is_active)
 		employee = create_employee(
 						user = user,
 						company=company,
