@@ -82,7 +82,7 @@ class Employee(models.Model):
 			'first_name': self.first_name,
 			'last_name': self.last_name,
 			'email': self.email,
-			'gender': 'male' if self.gender == 'M' else 'female',
+			'gender': 'male' if self.gender == 'm' else 'female',
 			'dob': self.dob.strftime('%d-%m-%Y'),
 			'company': self.company.name,
 			'is_active': self.is_active
